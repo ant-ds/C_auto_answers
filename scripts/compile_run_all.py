@@ -92,14 +92,15 @@ def run_all(paths):
         assert os.path.isfile(
             input_file), f"{input_file} doesn't exist!\nPlease create this input file"
         proc = subprocess.run(
-            f"./{path} < {input_file}".split(), capture_output=True)
+            f"./{path} < {input_file}".split(), stdin=subprocess.PIPE, shell=True, capture_output=True)
+        # print(proc.stdout)
 
 
 def main():
     run_path = '.'
     c_files = get_c_files(path=run_path)
-    out_files = compile_files(c_files=c_files)
-    # out_files = get_out_files(path=run_path)
+    # out_files = compile_files(c_files=c_files)
+    out_files = get_out_files(path=run_path)
     run_all(paths=out_files)
 
 
