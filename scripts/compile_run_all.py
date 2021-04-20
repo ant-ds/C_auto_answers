@@ -8,14 +8,15 @@ from tqdm import tqdm
 #  Configuration
 ####
 # files where subprocess.run() seems to infinitely loop (python buffer issue?)
-PROGRAM_HANGS = ["numerical_methods/gauss_elimination",
-                 "data_structures/binary_trees/binary_search_tree",
-                 "data_structures/binary_trees/threaded_binary_trees",
-                 "data_structures/graphs/bfs",
-                 "data_structures/graphs/dfs",
-                 "data_structures/graphs/floyd_warshall",
+PROGRAM_HANGS = []
+# ["numerical_methods/gauss_elimination",
+#                  "data_structures/binary_trees/binary_search_tree",
+#                  "data_structures/binary_trees/threaded_binary_trees",
+#                  "data_structures/graphs/bfs",
+#                  "data_structures/graphs/dfs",
+#                  "data_structures/graphs/floyd_warshall",
 
-                 ]
+#                  ]
 
 # files that don't seem to finish or are pointless to run
 FAILING = ["client_server/server",  # Doesn't finish
@@ -54,7 +55,7 @@ def get_c_files(path, ignore_list=[]):
     # Keep only files ending in .c
     c_files = []
     for files in all_files:
-        if files[-2:].lower() == ".c" and files[2:-2].lower() not in ignore_list:
+        if files[-2:].lower() == ".c" and files[len(path)+1:-2].lower() not in ignore_list:
             c_files.append(files)
     # TODO: add skip files in ignorelist (that don't need to be compiled)
 
@@ -88,8 +89,8 @@ def get_out_files(path, ignore_list=[]):
     # Keep only files ending in .c
     out_files = []
     for files in all_files:
-
-        if files[-4:].lower() == ".out" and files[2:-4].lower() not in ignore_list:
+        if files[-4:].lower() == ".out" and files[len(path)+1:-4].lower() not in ignore_list:
+            print(files[len(path)+1:-4])
             out_files.append(files)
 
     # Return list of tuples: (complete path, filename)
@@ -130,19 +131,22 @@ def run_all(paths):
         input_file = path[:-4] + ".input"
         assert os.path.isfile(
             input_file), f"{input_file} doesn't exist!"
-        proc = subprocess.run(
-            f"./{path} < {input_file}".split(), stdin=subprocess.PIPE, shell=True, capture_output=True)
-        # print(proc.stdout)
+        # proc = subprocess.run(
+        #     f"./{path} < {input_file}".split(), stdin=subprocess.PIPE, shell=True, capture_output=True)
+        inputs = open(input_file, 'r')
+        p1 = subprocess.run(
+            f"./{path}".split(), stdin=inputs)
 
 
 def main():
-    programs_to_ignore = PROGRAM_HANGS + \
-        FAILING + [idx[0] for idx in NORMAL_ARGS]
-    print(programs_to_ignore)
+    programs_to_ignore = (PROGRAM_HANGS +
+                          FAILING + [idx[0] for idx in NORMAL_ARGS])
+
     run_path = '.'
     c_files = get_c_files(path=run_path, ignore_list=programs_to_ignore)
     # out_files = compile_files(c_files=c_files)
     out_files = get_out_files(path=run_path, ignore_list=programs_to_ignore)
+
     run_all(paths=out_files)
 
 
