@@ -27,7 +27,8 @@ FAILING = ["client_server/server",  # Doesn't finish
 
 # files that have a static main #TODO: fix
 EMPTY = ["data_structures/binary_trees/segment_tree",
-         "data_structures/graphs/transitive_closure"
+         "data_structures/graphs/transitive_closure",
+         "data_structures/heap/max_heap"
          ]
 
 # files that work with normal args (./foo 1 2 3) instead of scanf
