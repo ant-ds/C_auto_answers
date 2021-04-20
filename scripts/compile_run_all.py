@@ -5,6 +5,12 @@ import subprocess
 from tqdm import tqdm
 
 ####
+#  Configuration
+####
+TO_IGNORE = ['numerical_methods/gauss_elimination']
+# TO_IGNORE = []
+
+####
 #  File find helper functions
 ####
 
@@ -55,12 +61,17 @@ def get_out_files(path):
     # Keep only files ending in .c
     c_files = []
     for files in all_files:
-        if files[-4:].lower() == ".out":
+
+        if files[-4:].lower() == ".out" and files[2:-4].lower() not in TO_IGNORE:
             c_files.append(files)
     # TODO: add skip files in ignorelist (that don't need to be compiled)
 
     # Return list of tuples: (complete path, filename)
     return(c_files)
+
+####
+#  Compile and run functions
+####
 
 
 def compile_files(c_files):
@@ -68,6 +79,7 @@ def compile_files(c_files):
     Compiles all given c_files
     Returns list of all .out paths
     """
+    # TODO: deal with cmakes
     all_output_paths = []
     for path in tqdm(c_files, "Compiling..."):
         # Create output path
