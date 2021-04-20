@@ -28,11 +28,12 @@ def get_c_files(path):
     # Keep only files ending in .c
     c_files = []
     for files in all_files:
-        if files[-2:].lower() == ".c":
+        if files[-2:].lower() == ".c" and files[2:-2].lower() not in TO_IGNORE:
             c_files.append(files)
     # TODO: add skip files in ignorelist (that don't need to be compiled)
 
     # Return list of tuples: (complete path, filename)
+    c_files.sort()
     return(c_files)
 
 
@@ -59,15 +60,15 @@ def get_out_files(path):
             all_files.append(os.path.join(root, name))
 
     # Keep only files ending in .c
-    c_files = []
+    out_files = []
     for files in all_files:
 
         if files[-4:].lower() == ".out" and files[2:-4].lower() not in TO_IGNORE:
-            c_files.append(files)
-    # TODO: add skip files in ignorelist (that don't need to be compiled)
+            out_files.append(files)
 
     # Return list of tuples: (complete path, filename)
-    return(c_files)
+    out_files.sort()
+    return(out_files)
 
 ####
 #  Compile and run functions
@@ -87,8 +88,8 @@ def compile_files(c_files):
 
         # Compile to output
         proc = subprocess.run(
-            f"gcc -O2 -o {output_path} {path}".split(), capture_output=True)
-
+            f"gcc -O2 -lm -o {output_path} {path}".split(), capture_output=True)
+        # TODO: count amount of times compilation fails
         all_output_paths.append(output_path)
 
     return all_output_paths
@@ -102,7 +103,7 @@ def run_all(paths):
         # Check existence of .input file
         input_file = path[:-4] + ".input"
         assert os.path.isfile(
-            input_file), f"{input_file} doesn't exist!\nPlease create this input file"
+            input_file), f"{input_file} doesn't exist!"
         proc = subprocess.run(
             f"./{path} < {input_file}".split(), stdin=subprocess.PIPE, shell=True, capture_output=True)
         # print(proc.stdout)
@@ -111,8 +112,8 @@ def run_all(paths):
 def main():
     run_path = '.'
     c_files = get_c_files(path=run_path)
-    # out_files = compile_files(c_files=c_files)
-    out_files = get_out_files(path=run_path)
+    out_files = compile_files(c_files=c_files)
+    # out_files = get_out_files(path=run_path)
     run_all(paths=out_files)
 
 
