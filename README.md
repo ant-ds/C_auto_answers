@@ -1,23 +1,23 @@
-# The Algorithms - C # {#mainpage}
-<!-- the suffix in the above line is required for doxygen to consider this as the index page of the generated documentation site -->
+# The Algorithms - C - Auto-answers
 
-[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/TheAlgorithms/C)
-[![Language grade: C/C++](https://img.shields.io/lgtm/grade/cpp/g/TheAlgorithms/C.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/TheAlgorithms/C/context:cpp)
-[![CodeQL CI](https://github.com/TheAlgorithms/C/actions/workflows/codeql_analysis.yml/badge.svg)](https://github.com/TheAlgorithms/C/actions/workflows/codeql_analysis.yml)
-[![Gitter chat](https://img.shields.io/badge/Chat-Gitter-ff69b4.svg?label=Chat&logo=gitter&style=flat-square)](https://gitter.im/TheAlgorithms)
-[![contributions welcome](https://img.shields.io/static/v1.svg?label=Contributions&message=Welcome&color=0059b3&style=flat-square)](https://github.com/TheAlgorithms/C/blob/master/CONTRIBUTING.md)
-![GitHub repo size](https://img.shields.io/github/repo-size/TheAlgorithms/C?color=red&style=flat-square)
-[![Doxygen CI](https://github.com/TheAlgorithms/C/workflows/Doxygen%20CI/badge.svg)](https://TheAlgorithms.github.io/C)
-[![Awesome CI](https://github.com/TheAlgorithms/C/workflows/Awesome%20CI%20Workflow/badge.svg)](https://github.com/TheAlgorithms/C/actions?query=workflow%3A%22Awesome+CI+Workflow%22)
-[![Income](https://img.shields.io/liberapay/receives/TheAlgorithms.svg?logo=liberapay)](https://liberapay.com/TheAlgorithms)
-[![Discord chat](https://img.shields.io/discord/808045925556682782.svg?logo=discord&colorB=7289DA)](https://discord.gg/c7MnfGFGa6)
-[![Donate](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/TheAlgorithms/donate)
+This fork of [The Algorithms](https://github.com/TheAlgorithms/C) containing needed input files to automatically run all files when compiled.
+The purpose of this repo is to help in automatically constructing datasets of C file traces.
 
-## Overview
+It does so by providing an input file for every C file that fills in all required input. 
+
+## How auto-running works
+This is an example for file `foo.c`:
+ 1. Compile the file: `gcc -O2 foo.c -O foo.out`
+ 2. Run it with given input: `./foo.out < foo.input`
+
+ For full automatisation, take a look at the python scripts in the `scripts` directory.
+ 
+## The Algorithms - C
+### Overview
 
 The repository is a collection of open-source implementation of a variety of algorithms implemented in C and licensed under [GPLv3 License](https://github.com/TheAlgorithms/C/blob/master/LICENSE). The algorithms span a variety of topics from computer science, mathematics and statistics, data science, machine learning, engineering, etc.. The implementations and the associated documentation are meant to provide a learning resource for educators and students. Hence, one may find more than one implementation for the same objective but using a different algorithm strategies and optimizations.
 
-## Features
+### Features
 
 * The repository provides implementations of various algorithms in one of the most fundamental general purpose languages - [C](https://en.wikipedia.org/wiki/C_(programming_language)).
 * Well documented source code with detailed explanations provide a valuable resource for educators and students alike.
@@ -27,7 +27,7 @@ The repository is a collection of open-source implementation of a variety of alg
 * Self-checks within programs ensure correct implementations with confidence.
 * Modular implementations and OpenSource licensing enable the functions to be utilized conveniently in other applications.
 
-## Documentation
+### Documentation
 
 [Online Documentation](https://TheAlgorithms.github.io/C) is generated from the repository source codes directly. The documentation contains all resources including source code snippets, details on execution of the programs, diagrammatic representation of program flow, and links to external resources where necessary.
 Click on [Files menu](https://TheAlgorithms.github.io/C/files.html) to see the list of all the files documented with the code.
@@ -35,6 +35,6 @@ Click on [Files menu](https://TheAlgorithms.github.io/C/files.html) to see the l
 [Documentation of Algorithms in C](https://thealgorithms.github.io/C) by [The Algorithms Contributors](https://github.com/TheAlgorithms/C/graphs/contributors) is licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1)<br/>
 <a href="https://creativecommons.org/licenses/by-sa/4.0"><img alt="Creative Commons License" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" /><img  alt="Credit must be given to the creator" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg" /><img alt="Adaptations must be shared under the same terms" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg" /></a>
 
-## Contributions
+### Contributions
 
 As a community developed and maintained repository, we welcome new un-plagiarized quality contributions. Please read our [Contribution Guidelines](https://github.com/TheAlgorithms/C/blob/master/CONTRIBUTING.md).
