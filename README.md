@@ -12,6 +12,10 @@ This is an example for file `foo.c`:
 
  For full automatisation, take a look at the python scripts in the `scripts` directory.
  
+ Run: `./scripts/compile_run_all.py`
+
+ (This script was only tested on a machine running Ubuntu 20.04)
+ 
 ## The Algorithms - C
 ### Overview
 
