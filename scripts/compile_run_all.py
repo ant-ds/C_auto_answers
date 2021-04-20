@@ -10,7 +10,12 @@ from tqdm import tqdm
 # files where subprocess.run() seems to infinitely loop (python buffer issue?)
 PROGRAM_HANGS = ["numerical_methods/gauss_elimination",
                  "data_structures/binary_trees/binary_search_tree",
-                 "data_structures/binary_trees/threaded_binary_trees"]
+                 "data_structures/binary_trees/threaded_binary_trees",
+                 "data_structures/graphs/bfs",
+                 "data_structures/graphs/dfs",
+                 "data_structures/graphs/floyd_warshall",
+
+                 ]
 
 # files that don't seem to finish or are pointless to run
 FAILING = ["client_server/server",  # Doesn't finish
@@ -22,6 +27,7 @@ FAILING = ["client_server/server",  # Doesn't finish
 
 # files that have a static main #TODO: fix
 EMPTY = ["data_structures/binary_trees/segment_tree",
+         "data_structures/graphs/transitive_closure"
          ]
 
 # files that work with normal args (./foo 1 2 3) instead of scanf
