@@ -7,7 +7,11 @@ from tqdm import tqdm
 ####
 #  Configuration
 ####
-TO_IGNORE = ['numerical_methods/gauss_elimination']
+TO_IGNORE = ["numerical_methods/gauss_elimination", "client_server/server",
+             "client_server/udp_client", "client_server/udp_server", "conversions/c_atoi_str_to_integer"]
+
+NORMAL_ARGS = [("conversions/c_atoi_str_to_integer", [3])]
+
 # TO_IGNORE = []
 
 ####
@@ -112,8 +116,8 @@ def run_all(paths):
 def main():
     run_path = '.'
     c_files = get_c_files(path=run_path)
-    out_files = compile_files(c_files=c_files)
-    # out_files = get_out_files(path=run_path)
+    # out_files = compile_files(c_files=c_files)
+    out_files = get_out_files(path=run_path)
     run_all(paths=out_files)
 
 
